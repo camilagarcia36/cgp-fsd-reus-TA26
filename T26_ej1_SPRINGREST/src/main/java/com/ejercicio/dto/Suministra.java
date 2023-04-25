@@ -11,97 +11,68 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="suministra")//en caso que la tabala sea diferente
+@Table(name="suministra")
 public class Suministra {
-	//Atributos de entidad registro_curso
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)//busca ultimo valor e incrementa desde id final de db
-		private int id;
-		@Column(name = "precio")//no hace falta si se llama igual
-		private int precio;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-		@ManyToOne
-	    @JoinColumn(name = "idpieza")
-	    Pieza pieza;
-	 
-	    @ManyToOne
-	    @JoinColumn(name = "idproveedor")
-	    Proveedor proveedor;
+	@ManyToOne
+    @JoinColumn(name="id")
+    private Piezas pieza;
 
-		public Suministra() {
-			// TODO Auto-generated constructor stub
-		}
+	@ManyToOne
+    @JoinColumn(name="id")
+    private Proveedores proveedor;
 
-		public Suministra(int id, int precio, Pieza pieza, Proveedor proveedor) {
-			super();
-			this.id = id;
-			this.precio = precio;
-			this.pieza = pieza;
-			this.proveedor = proveedor;
-		}
+	@Column(name="Precio")
+	private int precio;
 
-		/**
-		 * @return the id
-		 */
-		public int getId() {
-			return id;
-		}
+	public Suministra() {
+	}
 
-		/**
-		 * @param id the id to set
-		 */
-		public void setId(int id) {
-			this.id = id;
-		}
+	public Suministra(int id, Piezas pieza, Proveedores proveedor, int precio) {
+		this.id = id;
+		this.pieza = pieza;
+		this.proveedor = proveedor;
+		this.precio = precio;
+	}
 
-		/**
-		 * @return the precio
-		 */
-		public int getPrecio() {
-			return precio;
-		}
+	public int getId() {
+		return id;
+	}
 
-		/**
-		 * @param precio the precio to set
-		 */
-		public void setPrecio(int precio) {
-			this.precio = precio;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		/**
-		 * @return the pieza
-		 */
-		public Pieza getPieza() {
-			return pieza;
-		}
+	public Piezas getPieza() {
+		return pieza;
+	}
 
-		/**
-		 * @param pieza the pieza to set
-		 */
-		public void setPieza(Pieza pieza) {
-			this.pieza = pieza;
-		}
+	public void setPieza(Piezas pieza) {
+		this.pieza = pieza;
+	}
 
-		/**
-		 * @return the proveedor
-		 */
-		public Proveedor getProveedor() {
-			return proveedor;
-		}
+	public Proveedores getProveedor() {
+		return proveedor;
+	}
 
-		/**
-		 * @param proveedor the proveedor to set
-		 */
-		public void setProveedor(Proveedor proveedor) {
-			this.proveedor = proveedor;
-		}
+	public void setProveedor(Proveedores proveedor) {
+		this.proveedor = proveedor;
+	}
 
-		@Override
-		public String toString() {
-			return "Suministra [id=" + id + ", precio=" + precio + ", pieza=" + pieza + ", proveedor=" + proveedor
-					+ "]";
-		}
-	    
-	    
-	    
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	@Override
+	public String toString() {
+		return "Suministra [id=" + id + ", pieza=" + pieza + ", proveedor=" + proveedor + ", precio=" + precio + "]";
+	}
 }
