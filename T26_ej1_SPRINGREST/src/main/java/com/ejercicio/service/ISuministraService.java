@@ -2,23 +2,18 @@ package com.ejercicio.service;
 
 import java.util.List;
 
-import com.ejercicio.dto.Piezas;
-import com.ejercicio.dto.Proveedores;
 import com.ejercicio.dto.Suministra;
 
 public interface ISuministraService {
 
-	public List<Suministra> listarSuministra();
+	// Metodos del CRUD
+	public List<Suministra> listarSuministra(); // Listar All
 
-	public Suministra guardarSuministra(Suministra suministra);
+	public Suministra guardarSuministra(Suministra suministra); // Guarda un suministra CREATE
 
-	public Suministra suministraXID(int id);
+	public Suministra suministraById(int id); // Leer datos de un suministra READ
 
-	public List<Suministra> listarSuministraPiezas(Piezas pieza);
+	public Suministra actualizarSuministra(Suministra suministra); // Actualiza datos del suministra UPDATE
 
-	public List<Suministra> listarSuministraProveedores(Proveedores proveedor);
-
-	public Suministra actualizarSuministra(Suministra suministra);
-
-	public void eliminarSuministra(int id);
+	public void eliminarSuministra(int id);// Elimina el suministra DELETE
 }

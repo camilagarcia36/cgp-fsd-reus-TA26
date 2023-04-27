@@ -1,6 +1,9 @@
 package com.ejercicio.dto;
 
 import javax.persistence.Column;
+
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,57 +13,43 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
+
+
 @Entity
-@Table(name="suministra")
+@Table(name = "suministra")
 public class Suministra {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@ManyToOne
-    @JoinColumn(name="id")
-    private Piezas pieza;
-
-	@ManyToOne
-    @JoinColumn(name="id")
-    private Proveedores proveedor;
-
-	@Column(name="Precio")
+	@Column(name = "precio")
 	private int precio;
 
+	@ManyToOne
+	@JoinColumn(name = "codigopieza")
+	private Pieza pieza;
+
+	@ManyToOne
+	@JoinColumn(name = "idproveedor")
+	private Proveedor proveedor;
+
+	// CONTRUCTORES
 	public Suministra() {
+
 	}
 
-	public Suministra(int id, Piezas pieza, Proveedores proveedor, int precio) {
-		this.id = id;
+	public Suministra(int precio, Pieza pieza, Proveedor proveedor) {
+		this.precio = precio;
 		this.pieza = pieza;
 		this.proveedor = proveedor;
-		this.precio = precio;
 	}
 
+	// GETTERS Y SETTERS
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Piezas getPieza() {
-		return pieza;
-	}
-
-	public void setPieza(Piezas pieza) {
-		this.pieza = pieza;
-	}
-
-	public Proveedores getProveedor() {
-		return proveedor;
-	}
-
-	public void setProveedor(Proveedores proveedor) {
-		this.proveedor = proveedor;
 	}
 
 	public int getPrecio() {
@@ -71,8 +60,26 @@ public class Suministra {
 		this.precio = precio;
 	}
 
+	public Pieza getPieza() {
+		return pieza;
+	}
+
+	public void setPieza(Pieza pieza) {
+		this.pieza = pieza;
+	}
+
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	// TO STRING
 	@Override
 	public String toString() {
-		return "Suministra [id=" + id + ", pieza=" + pieza + ", proveedor=" + proveedor + ", precio=" + precio + "]";
+		return "Suministra [id=" + id + ", precio=" + precio + ", pieza=" + pieza + ", proveedor=" + proveedor + "]";
 	}
+
 }

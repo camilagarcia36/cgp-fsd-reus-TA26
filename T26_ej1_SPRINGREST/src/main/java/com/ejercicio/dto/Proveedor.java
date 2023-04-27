@@ -2,6 +2,8 @@ package com.ejercicio.dto;
 
 import java.util.List;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,33 +18,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name="proveedores")
-public class Proveedores {
-	
+@Table(name = "proveedores")
+public class Proveedor {
+	// Atributos de entidad departamento
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(name="Nombre")
+	private int id;
+	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToMany(mappedBy = "proveedor")
+	@OneToMany
+	@JoinColumn(name = "suministra")
 	private List<Suministra> suministra;
 
-	public Proveedores() {
+	// CONSTRUCTORES
+	public Proveedor() {
+
 	}
 
-	public Proveedores(Long id, String nombre, List<Suministra> suministra) {
-		this.id = id;
+	public Proveedor(String nombre) {
 		this.nombre = nombre;
-		this.suministra = suministra;
 	}
 
-	public Long getId() {
+	// GETTERS Y SETTERS
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -54,18 +57,20 @@ public class Proveedores {
 		this.nombre = nombre;
 	}
 
+	public void setSuministra(List<Suministra> suministra) {
+		this.suministra = suministra;
+	}
+
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Suministra")
 	public List<Suministra> getSuministra() {
 		return suministra;
 	}
 
-	public void setSuministra(List<Suministra> suministra) {
-		this.suministra = suministra;
-	}
-
+	// TO STRING
 	@Override
 	public String toString() {
-		return "Proveedores [id=" + id + ", nombre=" + nombre + "]";
+		return "Proveedor [id=" + id + ", nombre=" + nombre + ", suministra=" + suministra + "]";
 	}
+
 }
